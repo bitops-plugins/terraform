@@ -1,2 +1,2 @@
-# bitops-terraform-plugin
+# terraform
 Bitops Terraform Plugin
