@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # No set -e here because we want to get a non-zero exit code from terraform_plan.sh
 set -ex
 
