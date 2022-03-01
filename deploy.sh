@@ -42,8 +42,9 @@ echo "Listing contents of Terraform Root: $TERRAFORM_ROOT"
 
 
 # cloud provider auth
-echo "Terraform auth cloud provider"
-bash $SCRIPTS_DIR/aws/sts.get-caller-identity.sh
+# Disabling this as this functionality will be in aws plugins
+# echo "Terraform auth cloud provider"
+# bash $SCRIPTS_DIR/aws/sts.get-caller-identity.sh
 
 # Set terraform version
 echo "Using terraform version $TERRAFORM_VERSION"
