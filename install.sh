@@ -17,6 +17,11 @@ mkdir -p /opt/download
 cd /opt/download
 
 function install_terraform() {
+    results=$(command -v terraform)
+    if [[ -n $results ]]; then
+      # Command already exists. Exiting.
+      exit 0 
+    fi
     while IFS='' read -r TERRAFORM_VERSION; do
         TERRAFORM_DOWNLOAD_URL="https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
         echo ${TERRAFORM_DOWNLOAD_URL}
