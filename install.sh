@@ -28,6 +28,7 @@ function install_terraform() {
 }
 
 results=$(command -v terraform)
+echo "RESULTS: [$results]"
 if [[ -n $results ]]; then
   # Command already exists. Exiting.
   exit 0 
