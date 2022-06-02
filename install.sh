@@ -11,10 +11,13 @@ apk info
 
 # export TERRAFORM_VERSIONS=$(cat build.config.yaml | shyaml get-values terraform.versions)
 TERRAFORM_VERSION=1.2.2
+echo "USING TERRAFORM VERSION: [$TERRAFORM_VERSION]"
 
 
 mkdir -p /opt/download
 cd /opt/download
+
+echo "CD - DOWNLOAD FOLDER"
 
 results=$(command -v terraform)
 echo "COMMAND CHECK: [$results]"
@@ -23,6 +26,7 @@ if [[ -n $results ]]; then
   exit 0 
 fi
 
+echo "INSTALLING TERRAFORM"
 
 TERRAFORM_DOWNLOAD_URL="https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 echo ${TERRAFORM_DOWNLOAD_URL}
