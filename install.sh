@@ -19,12 +19,12 @@ cd /opt/download
 
 echo "CD - DOWNLOAD FOLDER"
 
-results=$(command -v terraform)
-# echo "COMMAND CHECK: [$results]"
-# if [[ -n $results ]]; then
-#   # Command already exists. Exiting.
-#   exit 0 
-# fi
+if command -v terraform &> /dev/null
+then
+    # Terraform already installed
+    exit
+fi
+
 
 echo "INSTALLING TERRAFORM"
 
