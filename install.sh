@@ -23,16 +23,12 @@ if [[ -n $results ]]; then
   exit 0 
 fi
 
-function install_terraform() {
-    while IFS='' read -r TERRAFORM_VERSION; do
-        TERRAFORM_DOWNLOAD_URL="https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
-        echo ${TERRAFORM_DOWNLOAD_URL}
-        curl -LO ${TERRAFORM_DOWNLOAD_URL} && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d ./
-        mv terraform /usr/local/bin/terraform-${TERRAFORM_VERSION}
-        ln -s /usr/local/bin/terraform-${TERRAFORM_VERSION} /usr/local/bin/terraform
-        chmod +x /usr/local/bin/terraform-${TERRAFORM_VERSION}
-    done <<< "$TERRAFORM_VERSION"
-}
 
-install_terraform
+TERRAFORM_DOWNLOAD_URL="https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+echo ${TERRAFORM_DOWNLOAD_URL}
+curl -LO ${TERRAFORM_DOWNLOAD_URL} && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d ./
+mv terraform /usr/local/bin/terraform-${TERRAFORM_VERSION}
+ln -s /usr/local/bin/terraform-${TERRAFORM_VERSION} /usr/local/bin/terraform
+chmod +x /usr/local/bin/terraform-${TERRAFORM_VERSION}
+
 
