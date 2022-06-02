@@ -18,7 +18,7 @@ cd /opt/download
 
 function install_terraform() {
     while IFS='' read -r TERRAFORM_VERSION; do
-        TERRAFORM_DOWNLOAD_URL="https://releases.hashicorp.com/terraform/terraform_${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+        TERRAFORM_DOWNLOAD_URL="https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
         echo ${TERRAFORM_DOWNLOAD_URL}
         curl -LO ${TERRAFORM_DOWNLOAD_URL} && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d ./
         mv terraform /usr/local/bin/terraform-${TERRAFORM_VERSION}
