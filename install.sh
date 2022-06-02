@@ -16,6 +16,13 @@ TERRAFORM_VERSION=1.2.2
 mkdir -p /opt/download
 cd /opt/download
 
+results=$(command -v terraform)
+echo "COMMAND CHECK: [$results]"
+if [[ -n $results ]]; then
+  # Command already exists. Exiting.
+  exit 0 
+fi
+
 function install_terraform() {
     while IFS='' read -r TERRAFORM_VERSION; do
         TERRAFORM_DOWNLOAD_URL="https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
@@ -27,11 +34,5 @@ function install_terraform() {
     done <<< "$TERRAFORM_VERSION"
 }
 
-results=$(command -v terraform)
-echo "COMMAND CHECK: [$results]"
-if [[ -n $results ]]; then
-  # Command already exists. Exiting.
-  exit 0 
-fi
 install_terraform
 
