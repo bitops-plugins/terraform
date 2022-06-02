@@ -19,7 +19,7 @@ cd /opt/download
 
 echo "CD - DOWNLOAD FOLDER"
 
-# results=$(command -v terraform)
+results=$(command -v terraform)
 # echo "COMMAND CHECK: [$results]"
 # if [[ -n $results ]]; then
 #   # Command already exists. Exiting.
