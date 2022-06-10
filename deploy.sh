@@ -79,7 +79,7 @@ fi
 if [ "${TERRAFORM_COMMAND}" == "apply" ] || [ "${TERRAFORM_APPLY}" == "true" ]; then
   # always plan first
   echo "Running Terraform Plan"
-  bash $S CRIPTS_DIR/terraform_plan.sh "$BITOPS_CONFIG_COMMAND"
+  bash $SCRIPTS_DIR/terraform_plan.sh "$BITOPS_CONFIG_COMMAND"
 
   echo "Running Terraform Apply"
   bash ${PLUGIN_DIR}/scripts/terraform_apply.sh "$BITOPS_CONFIG_COMMAND"
