@@ -43,11 +43,11 @@ else
 
 fi
 
-bash $SCRIPTS_DIR/terraform/validate_env.sh
+bash $SCRIPTS_DIR/validate_env.sh
 
 # Copy Default Terraform values
 echo "Copying defaults"
-$SCRIPTS_DIR/terraform/copy_defaults.sh "$TERRAFORM_ROOT"
+$SCRIPTS_DIR/copy_defaults.sh "$TERRAFORM_ROOT"
 
 echo "cd Terraform Root: $TERRAFORM_ROOT"
 cd $TERRAFORM_ROOT
@@ -73,18 +73,18 @@ terraform init -input=false || /usr/local/bin/terraform-$TERRAFORM_VERSION init 
 
 if [ -n "$TERRAFORM_WORKSPACE" ]; then
   echo "Running Terraform Workspace"
-  bash $SCRIPTS_DIR/terraform/terraform_workspace.sh $TERRAFORM_WORKSPACE
+  bash $SCRIPTS_DIR/terraform_workspace.sh $TERRAFORM_WORKSPACE
 fi
 
 if [ "${TERRAFORM_COMMAND}" == "plan" ]; then
   echo "Running Terraform Plan"
-  bash $SCRIPTS_DIR/terraform/terraform_plan.sh "$BITOPS_CONFIG_COMMAND"
+  bash $SCRIPTS_DIR/terraform_plan.sh "$BITOPS_CONFIG_COMMAND"
 fi
 
 if [ "${TERRAFORM_COMMAND}" == "apply" ] || [ "${TERRAFORM_APPLY}" == "true" ]; then
   # always plan first
   echo "Running Terraform Plan"
-  bash $SCRIPTS_DIR/terraform/terraform_plan.sh "$BITOPS_CONFIG_COMMAND"
+  bash $SCRIPTS_DIR/terraform_plan.sh "$BITOPS_CONFIG_COMMAND"
 
   echo "Running Terraform Apply"
   bash ${PLUGIN_DIR}/scripts/terraform_apply.sh "$BITOPS_CONFIG_COMMAND"
