@@ -13,9 +13,6 @@ export BITOPS_SCHEMA_ENV_FILE="$TERRAFORM_ROOT_OPERATIONS/ENV_FILE"
 export BITOPS_CONFIG_SCHEMA="$TERRAFORM_ROOT_SCRIPTS/bitops.schema.yaml"
 export TERRAFORM_COMMAND=""
 
-
-exit 2
-
 if [ ! -d "$TERRAFORM_ROOT" ]; then
   echo "No terraform directory.  Skipping."
   exit 0
@@ -27,7 +24,7 @@ fi
 echo "TERRAFORM_COMMAND: $TERRAFORM_COMMAND"
 
 # Check for Before Deploy Scripts
-bash $SCRIPTS_DIR/deploy/before-deploy.sh "$TERRAFORM_ROOT"
+# bash $SCRIPTS_DIR/deploy/before-deploy.sh "$TERRAFORM_ROOT"
 
 export BITOPS_CONFIG_COMMAND="$(ENV_FILE="$BITOPS_SCHEMA_ENV_FILE" DEBUG="" bash $SCRIPTS_DIR/bitops-config/convert-schema.sh $BITOPS_CONFIG_SCHEMA $TERRAFORM_BITOPS_CONFIG)"
 echo "BITOPS_CONFIG_COMMAND: $BITOPS_CONFIG_COMMAND"
@@ -45,6 +42,8 @@ cd $TERRAFORM_ROOT
 
 echo "Listing contents of Terraform Root: $TERRAFORM_ROOT"
 ls -al .
+
+exit 2
 
 # cloud provider auth
 # Disabling this as this functionality will be in aws plugins
