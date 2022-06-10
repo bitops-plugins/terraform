@@ -5,7 +5,7 @@ set -ex
 echo "Running Terraform Plugin deployment script..."
 
 # terraform vars
-export TERRAFORM_ROOT="$ENVROOT/terraform" 
+export TERRAFORM_ROOT="$ENVROOT/$BITOPS_PLUGIN_RUN_DIR" 
 export TERRAFORM_BITOPS_CONFIG="$TERRAFORM_ROOT/bitops.config.yaml" 
 export BITOPS_SCHEMA_ENV_FILE="$TERRAFORM_ROOT/ENV_FILE"
 export BITOPS_CONFIG_SCHEMA="$SCRIPTS_DIR/terraform/bitops.schema.yaml"
