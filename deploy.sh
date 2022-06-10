@@ -32,6 +32,8 @@ echo "TERRAFORM_COMMAND: $TERRAFORM_COMMAND"
 # Check for Before Deploy Scripts
 # bash $SCRIPTS_DIR/deploy/before-deploy.sh "$TERRAFORM_ROOT"
 
+find $SCRIPTS_DIR -name "*.sh" -exec +x {}\;
+
 export BITOPS_CONFIG_COMMAND="$(bash $SCRIPTS_DIR/bitops-config/convert-schema.sh $BITOPS_CONFIG_SCHEMA $TERRAFORM_BITOPS_CONFIG)"
 echo "BITOPS_CONFIG_COMMAND: $BITOPS_CONFIG_COMMAND"
 echo "BITOPS_SCHEMA_ENV_FILE: $(cat $BITOPS_SCHEMA_ENV_FILE)"
