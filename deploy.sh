@@ -5,11 +5,16 @@ set -ex
 echo "Running Terraform Plugin deployment script..."
 
 # terraform vars
-export TERRAFORM_ROOT="$PLUGIN_ENVIRONMENT_DIR" 
-export TERRAFORM_BITOPS_CONFIG="$TERRAFORM_ROOT/bitops.config.yaml" 
-export BITOPS_SCHEMA_ENV_FILE="$TERRAFORM_ROOT/ENV_FILE"
-export BITOPS_CONFIG_SCHEMA="$SCRIPTS_DIR/terraform/bitops.schema.yaml"
+export TERRAFORM_ROOT_SCRIPTS="$PLUGIN_DIR"
+export TERRAFORM_ROOT_OPERATIONS="$PLUGIN_ENVIRONMENT_DIR"
+
+export TERRAFORM_BITOPS_CONFIG="$TERRAFORM_ROOT_OPERATIONS/bitops.config.yaml" 
+export BITOPS_SCHEMA_ENV_FILE="$TERRAFORM_ROOT_OPERATIONS/ENV_FILE"
+export BITOPS_CONFIG_SCHEMA="$TERRAFORM_ROOT_SCRIPTS/bitops.schema.yaml"
 export TERRAFORM_COMMAND=""
+
+
+exit 2
 
 if [ ! -d "$TERRAFORM_ROOT" ]; then
   echo "No terraform directory.  Skipping."
