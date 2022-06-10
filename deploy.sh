@@ -51,18 +51,11 @@ bash $SCRIPTS_DIR/validate_env.sh
 echo "Copying defaults"
 $SCRIPTS_DIR/copy_defaults.sh "$TERRAFORM_ROOT"
 
-echo "cd Terraform Root: $TERRAFORM_ROOT"
-cd $TERRAFORM_ROOT
+echo "cd Terraform Root: $TERRAFORM_ROOT_OPERATIONS"
+cd $TERRAFORM_ROOT_OPERATIONS
 
-echo "Listing contents of Terraform Root: $TERRAFORM_ROOT"
+echo "Listing contents of Terraform Root: $TERRAFORM_ROOT_OPERATIONS"
 ls -al .
-
-exit 2
-
-# cloud provider auth
-# Disabling this as this functionality will be in aws plugins
-# echo "Terraform auth cloud provider"
-# bash $SCRIPTS_DIR/aws/sts.get-caller-identity.sh
 
 # Set terraform version
 echo "Using terraform version $TERRAFORM_VERSION"
@@ -72,7 +65,7 @@ echo "Using terraform version $TERRAFORM_VERSION"
 echo "Running terraform init"
 terraform init -input=false || /usr/local/bin/terraform-$TERRAFORM_VERSION init -input=false
 
-
+exit 2
 if [ -n "$TERRAFORM_WORKSPACE" ]; then
   echo "Running Terraform Workspace"
   bash $SCRIPTS_DIR/terraform_workspace.sh $TERRAFORM_WORKSPACE
