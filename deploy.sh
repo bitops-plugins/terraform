@@ -13,10 +13,11 @@ export BITOPS_SCHEMA_ENV_FILE="$TERRAFORM_ROOT_OPERATIONS/ENV_FILE"
 export BITOPS_CONFIG_SCHEMA="$TERRAFORM_ROOT_SCRIPTS/plugin.schema.yaml"
 export TERRAFORM_COMMAND=""
 
-ls -al $TERRAFORM_ROOT_SCRIPTS
-ls -al "$TERRAFORM_ROOT_SCRIPTS/scripts"
-ls -al $TERRAFORM_ROOT_OPERATIONS
+export SCRIPTS_DIR="$TERRAFORM_ROOT_SCRIPTS/scripts"
 
+ls -al $TERRAFORM_ROOT_SCRIPTS
+ls -al $TERRAFORM_ROOT_OPERATIONS
+ls -al $SCRIPTS_DIR
 
 if [ ! -d "$TERRAFORM_ROOT_OPERATIONS" ]; then
   echo "No terraform directory.  Skipping."
@@ -34,9 +35,15 @@ echo "TERRAFORM_COMMAND: $TERRAFORM_COMMAND"
 export BITOPS_CONFIG_COMMAND="$(bash $SCRIPTS_DIR/bitops-config/convert-schema.sh $BITOPS_CONFIG_SCHEMA $TERRAFORM_BITOPS_CONFIG)"
 echo "BITOPS_CONFIG_COMMAND: $BITOPS_CONFIG_COMMAND"
 echo "BITOPS_SCHEMA_ENV_FILE: $(cat $BITOPS_SCHEMA_ENV_FILE)"
-source "$BITOPS_SCHEMA_ENV_FILE"
 
-bash $TERRAFORM_ROOT_SCRIPTS/scripts/terraform/validate_env.sh
+if [ ! -f "$BITOPS_SCHEMA_ENV_FILE" ]; then 
+  echo "No terraform ENV file found"
+else
+  source "$BITOPS_SCHEMA_ENV_FILE"
+
+fi
+
+bash $SCRIPTS_DIR/terraform/validate_env.sh
 
 # Copy Default Terraform values
 echo "Copying defaults"
