@@ -65,7 +65,7 @@ echo "Using terraform version $TERRAFORM_VERSION"
 echo "Running terraform init"
 terraform init -input=false || /usr/local/bin/terraform-$TERRAFORM_VERSION init -input=false
 
-exit 2
+
 if [ -n "$TERRAFORM_WORKSPACE" ]; then
   echo "Running Terraform Workspace"
   bash $SCRIPTS_DIR/terraform_workspace.sh $TERRAFORM_WORKSPACE
