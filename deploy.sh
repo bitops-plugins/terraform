@@ -10,10 +10,11 @@ export TERRAFORM_ROOT_OPERATIONS="$PLUGIN_ENVIRONMENT_DIR"
 
 export TERRAFORM_BITOPS_CONFIG="$TERRAFORM_ROOT_OPERATIONS/bitops.config.yaml" 
 export BITOPS_SCHEMA_ENV_FILE="$TERRAFORM_ROOT_OPERATIONS/ENV_FILE"
-export BITOPS_CONFIG_SCHEMA="$TERRAFORM_ROOT_SCRIPTS/bitops.schema.yaml"
+export BITOPS_CONFIG_SCHEMA="$TERRAFORM_ROOT_SCRIPTS/plugin.schema.yaml"
 export TERRAFORM_COMMAND=""
 
 ls -al $TERRAFORM_ROOT_SCRIPTS
+ls -al "$TERRAFORM_ROOT_SCRIPTS/scripts"
 ls -al $TERRAFORM_ROOT_OPERATIONS
 
 
@@ -27,16 +28,15 @@ fi
 
 echo "TERRAFORM_COMMAND: $TERRAFORM_COMMAND"
 
-exit 2
 # Check for Before Deploy Scripts
 # bash $SCRIPTS_DIR/deploy/before-deploy.sh "$TERRAFORM_ROOT"
 
-export BITOPS_CONFIG_COMMAND="$(ENV_FILE="$BITOPS_SCHEMA_ENV_FILE" DEBUG="" bash $SCRIPTS_DIR/bitops-config/convert-schema.sh $BITOPS_CONFIG_SCHEMA $TERRAFORM_BITOPS_CONFIG)"
+export BITOPS_CONFIG_COMMAND="$(bash $SCRIPTS_DIR/bitops-config/convert-schema.sh $BITOPS_CONFIG_SCHEMA $TERRAFORM_BITOPS_CONFIG)"
 echo "BITOPS_CONFIG_COMMAND: $BITOPS_CONFIG_COMMAND"
 echo "BITOPS_SCHEMA_ENV_FILE: $(cat $BITOPS_SCHEMA_ENV_FILE)"
 source "$BITOPS_SCHEMA_ENV_FILE"
 
-bash $SCRIPTS_DIR/terraform/validate_env.sh
+bash $TERRAFORM_ROOT_SCRIPTS/scripts/terraform/validate_env.sh
 
 # Copy Default Terraform values
 echo "Copying defaults"
