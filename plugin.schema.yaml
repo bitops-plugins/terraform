@@ -19,3 +19,7 @@ terraform:
           type: string
           export_env: TERRAFORM_DIR
           default: blue
+        command:
+          type: string
+          required: true
+          

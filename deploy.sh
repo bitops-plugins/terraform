@@ -39,7 +39,7 @@ echo "cd Terraform Root: $TERRAFORM_ROOT"
 cd $TERRAFORM_ROOT
 
 echo "Listing contents of Terraform Root: $TERRAFORM_ROOT"
-
+ls -al .
 
 # cloud provider auth
 # Disabling this as this functionality will be in aws plugins
