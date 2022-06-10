@@ -13,6 +13,10 @@ export BITOPS_SCHEMA_ENV_FILE="$TERRAFORM_ROOT_OPERATIONS/ENV_FILE"
 export BITOPS_CONFIG_SCHEMA="$TERRAFORM_ROOT_SCRIPTS/bitops.schema.yaml"
 export TERRAFORM_COMMAND=""
 
+ls -al $TERRAFORM_ROOT_SCRIPTS
+ls -al $TERRAFORM_ROOT_OPERATIONS
+
+
 if [ ! -d "$TERRAFORM_ROOT" ]; then
   echo "No terraform directory.  Skipping."
   exit 0
