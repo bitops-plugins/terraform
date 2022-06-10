@@ -17,16 +17,17 @@ ls -al $TERRAFORM_ROOT_SCRIPTS
 ls -al $TERRAFORM_ROOT_OPERATIONS
 
 
-if [ ! -d "$TERRAFORM_ROOT" ]; then
+if [ ! -d "$TERRAFORM_ROOT_OPERATIONS" ]; then
   echo "No terraform directory.  Skipping."
   exit 0
 else
   printf "Deploying terraform... ${NC}"
-  TERRAFORM_COMMAND=$(shyaml get-value terraform.options.command < $TERRAFORM_ROOT/bitops.config.yaml)
+  TERRAFORM_COMMAND=$(shyaml get-value terraform.options.command < $TERRAFORM_ROOT_OPERATIONS/bitops.config.yaml)
 fi
 
 echo "TERRAFORM_COMMAND: $TERRAFORM_COMMAND"
 
+exit 2
 # Check for Before Deploy Scripts
 # bash $SCRIPTS_DIR/deploy/before-deploy.sh "$TERRAFORM_ROOT"
 
