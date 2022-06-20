@@ -1,0 +1,42 @@
+terraform:
+  type: object
+  properties:
+    cli:
+      type: object
+      properties:
+        var-file:
+          type: string
+          parameter: var-file
+          export_env: TF_VAR_FILE
+        
+        target:
+          type: string
+          parameter: target
+          export_env: TF_TARGET
+        
+        backend-config:
+          type: parameter-list
+          parameter: backend-config
+          dash_type: "-"
+        
+        stack-action:
+          type: string
+          
+    options:
+      type: object
+      properties:
+        version:
+          type: string
+          export_env: TERRAFORM_VERSION
+          default: "0.13.2"
+        command:
+          type: string
+          export_env: TERRAFORM_COMMAND
+          default: "plan"
+        workspace:
+          type: string
+          export_env: TERRAFORM_WORKSPACE
+        init-upgrade:
+          type: boolean
+          export_env: INIT_UPGRADE
+          default: false
