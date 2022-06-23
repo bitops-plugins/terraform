@@ -18,11 +18,8 @@ if [ ! -d "$TERRAFORM_ROOT_OPERATIONS" ]; then
   echo "No terraform directory.  Skipping."
   exit 0
 else
-  printf "Deploying terraform... ${NC}"
-  TERRAFORM_COMMAND=$(shyaml get-value terraform.options.command < $TERRAFORM_ROOT_OPERATIONS/bitops.config.yaml)
+  printf "Deploying terraform..."
 fi
-
-echo "TERRAFORM_COMMAND: $TERRAFORM_COMMAND"
 
 # Check for Before Deploy Scripts
 # bash $SCRIPTS_DIR/deploy/before-deploy.sh "$TERRAFORM_ROOT"
@@ -60,17 +57,17 @@ echo "Running terraform init"
 terraform init -input=false || /usr/local/bin/terraform-$TERRAFORM_VERSION init -input=false
 
 
-if [ -n "$TERRAFORM_WORKSPACE" ]; then
+if [ -n "$BITOPS_TERRAFORM_WORKSPACE" ]; then
   echo "Running Terraform Workspace"
   bash $SCRIPTS_DIR/terraform_workspace.sh $TERRAFORM_WORKSPACE
 fi
 
-if [ "${TERRAFORM_COMMAND}" == "plan" ]; then
+if [ "${BITOPS_TERRAFORM_COMMAND}" == "plan" ]; then
   echo "Running Terraform Plan"
   bash $SCRIPTS_DIR/terraform_plan.sh "$BITOPS_CONFIG_COMMAND"
 fi
 
-if [ "${TERRAFORM_COMMAND}" == "apply" ] || [ "${TERRAFORM_APPLY}" == "true" ]; then
+if [ "${BITOPS_TERRAFORM_COMMAND}" == "apply" ] || [ "${TERRAFORM_APPLY}" == "true" ]; then
   # always plan first
   echo "DEBUGGING: [$SCRIPTS_DIR]"
   echo "Running Terraform Plan"
@@ -80,7 +77,7 @@ if [ "${TERRAFORM_COMMAND}" == "apply" ] || [ "${TERRAFORM_APPLY}" == "true" ]; 
   bash $SCRIPTS_DIR/terraform_apply.sh "$BITOPS_CONFIG_COMMAND"
 fi
 
-if [ "${TERRAFORM_COMMAND}" == "destroy" ] || [ "${TERRAFORM_DESTROY}" == "true" ]; then
+if [ "${BITOPS_TERRAFORM_COMMAND}" == "destroy" ] || [ "${TERRAFORM_DESTROY}" == "true" ]; then
   # always plan first
   echo "Running Terraform Plan"
   bash $SCRIPTS_DIR/terraform_plan.sh "-destroy $BITOPS_CONFIG_COMMAND"
@@ -92,4 +89,4 @@ fi
 # Check for After Deploy Scripts
 # bash $PLUGIN_DIR/deploy/after-deploy.sh "$TERRAFORM_ROOT"
 
-echo "PLUGIN_DIR=${PLUGIN_DIR}"
+#echo "PLUGIN_DIR=${PLUGIN_DIR}"
