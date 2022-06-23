@@ -15,7 +15,7 @@ terraform:
           export_env: TF_TARGET
         
         backend-config:
-          type: parameter-list
+          type: list
           parameter: backend-config
           dash_type: "-"
         
