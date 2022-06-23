@@ -31,14 +31,11 @@ echo "TERRAFORM_COMMAND: $TERRAFORM_COMMAND"
 find $SCRIPTS_DIR -name "*.sh" -exec chmod +x {} +
 
 export BITOPS_CONFIG_COMMAND="$(bash $SCRIPTS_DIR/bitops-config/convert-schema.sh $BITOPS_CONFIG_SCHEMA $TERRAFORM_BITOPS_CONFIG)"
-echo "BITOPS_CONFIG_COMMAND: $BITOPS_CONFIG_COMMAND"
-echo "BITOPS_SCHEMA_ENV_FILE: $(cat $BITOPS_SCHEMA_ENV_FILE)"
 
 if [ ! -f "$BITOPS_SCHEMA_ENV_FILE" ]; then 
   echo "No terraform ENV file found"
 else
   source "$BITOPS_SCHEMA_ENV_FILE"
-
 fi
 
 bash $SCRIPTS_DIR/validate_env.sh
