@@ -30,19 +30,21 @@ echo "TERRAFORM_COMMAND: $TERRAFORM_COMMAND"
 
 find $SCRIPTS_DIR -name "*.sh" -exec chmod +x {} +
 
-export BITOPS_CONFIG_COMMAND="$(bash $SCRIPTS_DIR/bitops-config/convert-schema.sh $BITOPS_CONFIG_SCHEMA $TERRAFORM_BITOPS_CONFIG)"
-
 if [ ! -f "$BITOPS_SCHEMA_ENV_FILE" ]; then 
   echo "No terraform ENV file found"
 else
   source "$BITOPS_SCHEMA_ENV_FILE"
 fi
 
+echo "DEBUGGING: [$SCRIPTS_DIR]"
+
 bash $SCRIPTS_DIR/validate_env.sh
 
 # Copy Default Terraform values
 echo "Copying defaults"
 $SCRIPTS_DIR/copy_defaults.sh "$TERRAFORM_ROOT"
+
+echo "DEBUGGING: [$SCRIPTS_DIR]"
 
 echo "cd Terraform Root: $TERRAFORM_ROOT_OPERATIONS"
 cd $TERRAFORM_ROOT_OPERATIONS
@@ -71,6 +73,7 @@ fi
 
 if [ "${TERRAFORM_COMMAND}" == "apply" ] || [ "${TERRAFORM_APPLY}" == "true" ]; then
   # always plan first
+  echo "DEBUGGING: [$SCRIPTS_DIR]"
   echo "Running Terraform Plan"
   bash $SCRIPTS_DIR/terraform_plan.sh "$BITOPS_CONFIG_COMMAND"
 
