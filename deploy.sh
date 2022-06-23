@@ -15,10 +15,6 @@ export TERRAFORM_COMMAND=""
 
 export SCRIPTS_DIR="$TERRAFORM_ROOT_SCRIPTS/scripts"
 
-ls -al $TERRAFORM_ROOT_SCRIPTS
-ls -al $TERRAFORM_ROOT_OPERATIONS
-ls -al $SCRIPTS_DIR
-
 if [ ! -d "$TERRAFORM_ROOT_OPERATIONS" ]; then
   echo "No terraform directory.  Skipping."
   exit 0
