@@ -21,6 +21,7 @@ terraform:
         
         stack-action:
           type: string
+          export_env: TERRAFORM_COMMAND
           
     options:
       type: object
@@ -29,14 +30,10 @@ terraform:
           type: string
           export_env: TERRAFORM_VERSION
           default: "0.13.2"
-        command:
-          type: string
-          export_env: TERRAFORM_COMMAND
-          default: "plan"
         workspace:
           type: string
           export_env: TERRAFORM_WORKSPACE
         init-upgrade:
           type: boolean
-          export_env: INIT_UPGRADE
+          export_env: TERRAFORM_INIT_UPGRADE
           default: false
