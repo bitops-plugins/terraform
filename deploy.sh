@@ -11,7 +11,6 @@ export TERRAFORM_ROOT_OPERATIONS="$BITOPS_OPSREPO_ENVIRONMENT_DIR"
 export TERRAFORM_BITOPS_CONFIG="$TERRAFORM_ROOT_OPERATIONS/bitops.config.yaml" 
 export BITOPS_SCHEMA_ENV_FILE="$TERRAFORM_ROOT_OPERATIONS/ENV_FILE"
 export BITOPS_CONFIG_SCHEMA="$TERRAFORM_ROOT_SCRIPTS/plugin.schema.yaml"
-export TERRAFORM_COMMAND=""
 
 export SCRIPTS_DIR="$TERRAFORM_ROOT_SCRIPTS/scripts"
 
@@ -78,16 +77,16 @@ if [ "${TERRAFORM_COMMAND}" == "apply" ] || [ "${TERRAFORM_APPLY}" == "true" ]; 
   bash $SCRIPTS_DIR/terraform_plan.sh "$BITOPS_CONFIG_COMMAND"
 
   echo "Running Terraform Apply"
-  bash ${PLUGIN_DIR}/scripts/terraform_apply.sh "$BITOPS_CONFIG_COMMAND"
+  bash $SCRIPTS_DIR/terraform_apply.sh "$BITOPS_CONFIG_COMMAND"
 fi
 
 if [ "${TERRAFORM_COMMAND}" == "destroy" ] || [ "${TERRAFORM_DESTROY}" == "true" ]; then
   # always plan first
   echo "Running Terraform Plan"
-  bash $PLUGIN_DIR/scripts/terraform_plan.sh "-destroy $BITOPS_CONFIG_COMMAND"
+  bash $SCRIPTS_DIR/terraform_plan.sh "-destroy $BITOPS_CONFIG_COMMAND"
   
   echo "Running Terraform Destroy"
-  bash $PLUGIN_DIR/scripts/terraform_destroy.sh "$BITOPS_CONFIG_COMMAND"
+  bash $SCRIPTS_DIR/terraform_destroy.sh "$BITOPS_CONFIG_COMMAND"
 fi
 
 # Check for After Deploy Scripts
