@@ -5,6 +5,6 @@ plugin:
 
   deployment:
     language: bash
-    deployment_script: install.sh
+    deployment_script: deploy.sh
     core_schema_parsing: true
     life_cycle_scripts: true
