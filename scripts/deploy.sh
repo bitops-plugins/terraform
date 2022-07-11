@@ -3,6 +3,7 @@
 set -e
 
 # terraform vars
+export PLUGINS_ROOT_DIR="$BITOPS_PLUGINS_DIR"
 export TERRAFORM_ROOT="$ENVROOT/terraform" 
 export TERRAFORM_BITOPS_CONFIG="$TERRAFORM_ROOT/bitops.config.yaml" 
 export BITOPS_SCHEMA_ENV_FILE="$TERRAFORM_ROOT/ENV_FILE"
@@ -15,6 +16,24 @@ if [ ! -d "$TERRAFORM_ROOT" ]; then
 else
   printf "Deploying terraform... ${NC}"
 fi
+
+
+ls -ltr $PLUGINS_ROOT_DIR
+
+# Check for dependent aws plugin
+if [ ! -d $PLUGINS_ROOT_DIR/aws ]; then
+    echo "aws plugin is missing..."
+    exit 1
+else
+    # Check for dependent kubectl plugin
+    if [ ! -d $PLUGINS_ROOT_DIR/kubectl ]; then
+    echo "kubectl plugin is missing..."
+    exit 1
+    else
+    echo "All dependent plugins found. Continuing with deployment.."
+    fi
+fi
+
 
 # Check for Before Deploy Scripts
 bash $SCRIPTS_DIR/deploy/before-deploy.sh "$TERRAFORM_ROOT"
