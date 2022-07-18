@@ -32,7 +32,7 @@ bitops:
 
 ## Deployment
 
-``terraform`` plugin uses ```bitops.config.yaml``` located in the operations repo when deploying resources using aws cloudformation templates.
+``terraform`` plugin uses ```bitops.config.yaml``` located in the operations repo when deploying resources using terraform scripts.
 
 ### Sample Config
 ```
