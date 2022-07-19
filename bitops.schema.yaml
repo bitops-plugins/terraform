@@ -22,6 +22,7 @@ terraform:
         stack-action:
           type: string
           export_env: TERRAFORM_COMMAND
+          required: True
           
     options:
       type: object
