@@ -51,20 +51,24 @@ terraform:
 
 ``terraform`` will always run `terraform init` and `terraform plan` on every execution.
 
-## CLI Configuration
+## CLI and options configuration of Terraform ``bitops.schema.yaml``
+
+### Terraform BitOps Schema
+
+[bitops.schema.yaml](https://github.com/bitops-plugins/terraform/blob/main/bitops.schema.yaml)
 
 -------------------
 ### var-file
 * **BitOps Property:** `var-file`
 * **CLI Argument:** `--var-file`
-* **Environment Variable:** `TF_VAR_FILE`
+* **Environment Variable:** `BITOPS_TF_VAR_FILE`
 * **default:** `""`
 
 -------------------
 ### target
 * **BitOps Property:** `target`
 * **CLI Argument:** `--target`
-* **Environment Variable:** `TF_TARGET`
+* **Environment Variable:** `BITOPS_TF_TARGET`
 * **default:** `""`
 
 -------------------
@@ -78,7 +82,7 @@ terraform:
 
 ### stack-action
 * **BitOps Property:** `stack-action`
-* **Environment Variable:** `TERRAFORM_COMMAND`
+* **Environment Variable:** `BITOPS_TERRAFORM_COMMAND`
 * **default:** `"plan"`
 
 Controls what terraform command to run. e.g. `apply`, `destroy`, etc.
@@ -92,7 +96,7 @@ Controls what terraform command to run. e.g. `apply`, `destroy`, etc.
 -------------------
 ### version
 * **BitOps Property:** `version`
-* **Environment Variable:** `TERRAFORM_VERSION`
+* **Environment Variable:** `BITOPS_TERRAFORM_VERSION`
 * **default:** `"0.12.29"`
 
 Allows customziation of which version of terraform to run
@@ -100,7 +104,7 @@ Allows customziation of which version of terraform to run
 -------------------
 ### workspace
 * **BitOps Property:** `workspace`
-* **Environment Variable:** `TERRAFORM_WORKSPACE`
+* **Environment Variable:** `BITOPS_TERRAFORM_WORKSPACE`
 * **default:** `""`
 
 Will select a terraform workspace using `terraform workspace new $TERRAFORM_WORKSPACE || terraform workspace select $TERRAFORM_WORKSPACE` prior to running other terraform commands.
