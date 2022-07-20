@@ -51,7 +51,11 @@ terraform:
 
 ``terraform`` will always run `terraform init` and `terraform plan` on every execution.
 
-## CLI Configuration
+## CLI and options configuration of Terraform ``bitops.schema.yaml``
+
+### Terraform BitOps Schema
+
+[bitops.schema.yaml](https://github.com/bitops-plugins/terraform/blob/main/bitops.schema.yaml)
 
 -------------------
 ### var-file
