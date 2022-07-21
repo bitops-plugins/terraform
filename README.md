@@ -84,8 +84,9 @@ terraform:
 * **BitOps Property:** `stack-action`
 * **Environment Variable:** `BITOPS_TERRAFORM_COMMAND`
 * **default:** `"plan"`
+* **required:** `"True"`
 
-Controls what terraform command to run. e.g. `apply`, `destroy`, etc.
+Controls what terraform command to run. e.g. `apply`, `destroy`, etc. This config is a required parameter.
 
 
 -------------------
