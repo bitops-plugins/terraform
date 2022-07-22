@@ -102,6 +102,8 @@ Controls what terraform command to run. e.g. `apply`, `destroy`, etc. This confi
 
 Allows customziation of which version of terraform to run
 
+* **NOTE:** `This feature currently not supported.` 
+
 -------------------
 ### workspace
 * **BitOps Property:** `workspace`
