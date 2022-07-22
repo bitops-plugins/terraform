@@ -5,36 +5,22 @@ This plugin will let BitOps to automatically deploy ``terraform`` resources on a
 
 ## Installation
 
-This plugin gets installed through ```bitops.config.yaml```.
-
-### Sample Config
-
-```
-bitops:
-  fail_fast: true 
-  run_mode: default
-  logging:      
-    level: DEBUG
-    color:
-      enabled: true
-    filename: bitops-run
-    err: bitops.logs
-    path: /var/logs/bitops
-  opsrepo_root_default_dir: _default
-  plugins:    
-    terraform:
-      source: https://github.com/bitops-plugins/terraform
-...
-...
-...
-
-```
+This plugin is pre-installed into some pre-built images.  To install the plugin into your custom image, see [Installation Documentation](INSTALL.md)
 
 ## Deployment
 
 ``terraform`` plugin uses ```bitops.config.yaml``` located in the operations repo when deploying resources using terraform scripts.
 
-### Sample Config
+### Example config minimum required
+```
+terraform:
+    cli:
+        stack-action: "plan"
+    options: {}
+
+```
+
+### Example 2
 ```
 terraform:
     cli:
@@ -45,7 +31,7 @@ terraform:
             - KEY1=foo
             - KEY2=bar
     options:
-        version: "0.13.2"
+        version: "1.2.2"
         workspace: test
 ```
 
@@ -63,6 +49,8 @@ terraform:
 * **CLI Argument:** `--var-file`
 * **Environment Variable:** `BITOPS_TF_VAR_FILE`
 * **default:** `""`
+* **Required:** `false`
+* **Description:** Terraform Varaible file
 
 -------------------
 ### target
@@ -70,6 +58,8 @@ terraform:
 * **CLI Argument:** `--target`
 * **Environment Variable:** `BITOPS_TF_TARGET`
 * **default:** `""`
+* **Required:** `false`
+* **Description:**
 
 -------------------
 ### backend-config
@@ -77,6 +67,8 @@ terraform:
 * **CLI Argument:** `--KEY1=foo --KEY2=bar`
 * **Environment Variable:** ``
 * **default:** `""`
+* **Required:** `false`
+* **Description:**
 
 -------------------
 
@@ -84,9 +76,8 @@ terraform:
 * **BitOps Property:** `stack-action`
 * **Environment Variable:** `BITOPS_TERRAFORM_COMMAND`
 * **default:** `"plan"`
-* **required:** `"True"`
-
-Controls what terraform command to run. e.g. `apply`, `destroy`, etc. This config is a required parameter.
+* **Required:** `true`
+* **Description:** Controls what terraform command to run. e.g. `apply`, `destroy`, etc. 
 
 
 -------------------
@@ -98,9 +89,9 @@ Controls what terraform command to run. e.g. `apply`, `destroy`, etc. This confi
 ### version
 * **BitOps Property:** `version`
 * **Environment Variable:** `BITOPS_TERRAFORM_VERSION`
-* **default:** `"0.12.29"`
-
-Allows customziation of which version of terraform to run
+* **default:** `"1.2.2"`
+* **Required:** `false`
+* **Description:** Allows customziation of which version of terraform to run
 
 * **NOTE:** `This feature currently not supported.` 
 
@@ -109,13 +100,13 @@ Allows customziation of which version of terraform to run
 * **BitOps Property:** `workspace`
 * **Environment Variable:** `BITOPS_TERRAFORM_WORKSPACE`
 * **default:** `""`
-
-Will select a terraform workspace using `terraform workspace new $TERRAFORM_WORKSPACE || terraform workspace select $TERRAFORM_WORKSPACE` prior to running other terraform commands.
+* **Required:** `false`
+* **Description:** Will select a terraform workspace using `terraform workspace new $TERRAFORM_WORKSPACE || terraform workspace select $TERRAFORM_WORKSPACE` prior to running other terraform commands.
 
 -------------------
 
 ## Additional Environment Variable Configuration
-Although not captured in `bitops.config.yml`, the following environment variables can be set to further customize behaviour
+Although not captured in `bitops.config.yml`, the following environment variables can be set to further customize behaviour.  Set the value of the environental variable to `true` to use
 
 -------------------
 ### SKIP_DEPLOY_TERRAFORM
