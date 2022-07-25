@@ -1,40 +1,37 @@
 terraform:
-  type: object
-  properties:
-    cli:
-      type: object
-      properties:
-        var-file:
-          type: string
-          parameter: var-file
-          export_env: TF_VAR_FILE
-        
-        target:
-          type: string
-          parameter: target
-          export_env: TF_TARGET
-        
-        backend-config:
-          type: list
-          parameter: backend-config
-          dash_type: "-"
-        
-        stack-action:
-          type: string
-          export_env: TERRAFORM_COMMAND
-          required: True
-          
-    options:
-      type: object
-      properties:
-        version:
-          type: string
-          export_env: TERRAFORM_VERSION
-          default: "0.13.2"
-        workspace:
-          type: string
-          export_env: TERRAFORM_WORKSPACE
-        init-upgrade:
-          type: boolean
-          export_env: TERRAFORM_INIT_UPGRADE
-          default: false
+    type: object
+    properties:
+      cli:
+        type: object
+        properties:
+          var-file:
+            type: string
+            parameter: var-file
+            export_env: TF_VAR_FILE
+          target:
+            type: string
+            parameter: target
+            export_env: TF_TARGET
+          backend-config:
+            type: list
+            parameter: backend-config
+            dash_type: "-"
+      options:
+        type: object
+        properties:
+          stack-action:
+            type: string
+            export_env: TERRAFORM_COMMAND
+            required: True
+          # version:
+          #   type: string
+          #   export_env: TERRAFORM_VERSION
+          #   default: "0.13.2"
+          workspace:
+            type: string
+            export_env: TERRAFORM_WORKSPACE
+          # init-upgrade:
+          #   type: boolean
+          #   export_env: TERRAFORM_INIT_UPGRADE
+          #   default: false
+  

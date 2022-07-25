@@ -26,12 +26,11 @@ terraform:
     cli:
         var-file: my-vars.tfvars
         target: terraform.module.resource
-        stack-action: "plan"
         backend-config:
             - KEY1=foo
             - KEY2=bar
     options:
-        version: "1.2.2"
+        stack-action: "plan"
         workspace: test
 ```
 
@@ -72,6 +71,11 @@ terraform:
 
 -------------------
 
+
+## Options Configuration
+
+-------------------
+
 ### stack-action
 * **BitOps Property:** `stack-action`
 * **Environment Variable:** `BITOPS_TERRAFORM_COMMAND`
@@ -81,19 +85,14 @@ terraform:
 
 
 -------------------
-
-
-## Options Configuration
-
--------------------
-### version
+<!-- ### version
 * **BitOps Property:** `version`
 * **Environment Variable:** `BITOPS_TERRAFORM_VERSION`
 * **default:** `"1.2.2"`
 * **Required:** `false`
 * **Description:** Allows customziation of which version of terraform to run
 
-* **NOTE:** `This feature currently not supported.` 
+* **NOTE:** `This feature currently not supported.`  -->
 
 -------------------
 ### workspace
