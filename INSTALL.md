@@ -1,8 +1,6 @@
 ## Installation
 
-This plugin gets installed through ```bitops.config.yaml```.
-
-? Where is this file located?
+This plugin gets installed through ```bitops.config.yaml``` in the bitops core level. This file is located [here](https://github.com/bitovi/bitops/blob/plugins/bitops.config.yaml)
 
 ### Sample Config
 

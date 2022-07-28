@@ -1,11 +1,16 @@
 # Bitops Plugin for Terraform
 
+## Table of contents
+
+1. [Introduction](#Introduction)
+2. [Installation](https://github.com/bitops-plugins/terraform/blob/main/INSTALL.md)
+3. [Deployment](#Deployment)
+
+
+---
+
 ## Introduction
 This plugin will let BitOps to automatically deploy ``terraform`` resources on any cloud provider. ``terraform`` plugin uses session variables while connecting to any cloud provider.
-
-## Installation
-
-This plugin is pre-installed into some pre-built images.  To install the plugin into your custom image, see [Installation Documentation](INSTALL.md)
 
 ## Deployment
 
