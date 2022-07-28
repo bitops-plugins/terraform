@@ -23,6 +23,7 @@ terraform:
             type: string
             export_env: TERRAFORM_COMMAND
             required: True
+            default: plan
           # version:
           #   type: string
           #   export_env: TERRAFORM_VERSION
