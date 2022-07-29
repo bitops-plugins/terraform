@@ -16,16 +16,12 @@ This plugin will let BitOps to automatically deploy ``terraform`` resources on a
 
 ``terraform`` plugin uses ```bitops.config.yaml``` located in the operations repo when deploying resources using terraform scripts.
 
-### Example config minimum required
+### Example `bitops.config.yaml`, minimum required
 ```
-terraform:
-    cli:
-        stack-action: "plan"
-    options: {}
-
+terraform: {}
 ```
 
-### Example 2
+### Example 2 `bitops.config.yaml`
 ```
 terraform:
     cli:
@@ -40,6 +36,8 @@ terraform:
 ```
 
 ``terraform`` will always run `terraform init` and `terraform plan` on every execution.
+
+Run BitOps with the environmental variable `TERRAFORM_APPLY` set to `true` or set `stack-action` in the `bitops.config.yaml` file to apply to run `terraform apply`.
 
 ## CLI and options configuration of Terraform ``bitops.schema.yaml``
 
@@ -85,7 +83,7 @@ terraform:
 * **BitOps Property:** `stack-action`
 * **Environment Variable:** `BITOPS_TERRAFORM_COMMAND`
 * **default:** `"plan"`
-* **Required:** `true`
+* **Required:** `false`
 * **Description:** Controls what terraform command to run. e.g. `apply`, `destroy`, etc. 
 
 
