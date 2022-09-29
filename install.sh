@@ -33,5 +33,5 @@ mv terraform /usr/local/bin/terraform-${TERRAFORM_VERSION}
 ln -s /usr/local/bin/terraform-${TERRAFORM_VERSION} /usr/local/bin/terraform
 chmod +x /usr/local/bin/terraform-${TERRAFORM_VERSION}
 
-# verify Terraform installation
+# Verify the Terraform installation
 terraform version
