@@ -10,21 +10,19 @@ echo ""
 apk info
 
 # export TERRAFORM_VERSIONS=$(cat build.config.yaml | shyaml get-values terraform.versions)
-TERRAFORM_VERSION=1.2.2
+LATEST_RELEASE=$(curl https://api.github.com/repos/hashicorp/terraform/releases/latest | jq --raw-output '.tag_name' | cut -c 2-)
+TERRAFORM_VERSION=${LATEST_RELEASE}
 echo "USING TERRAFORM VERSION: [$TERRAFORM_VERSION]"
-
 
 mkdir -p /opt/download
 cd /opt/download
 
 echo "CD - DOWNLOAD FOLDER"
 
-if command -v terraform &> /dev/null
-then
-    # Terraform already installed
+# Terraform already installed
+if command -v terraform &> /dev/null; then
     exit
 fi
-
 
 echo "INSTALLING TERRAFORM"
 
@@ -35,4 +33,5 @@ mv terraform /usr/local/bin/terraform-${TERRAFORM_VERSION}
 ln -s /usr/local/bin/terraform-${TERRAFORM_VERSION} /usr/local/bin/terraform
 chmod +x /usr/local/bin/terraform-${TERRAFORM_VERSION}
 
-
+# verify Terraform installation
+terraform version
