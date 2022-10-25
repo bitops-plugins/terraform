@@ -22,3 +22,5 @@ else
 fi
 
 printf "${SUCCESS} Terraform deployment was successful...${NC}"
+
+

@@ -102,3 +102,6 @@ fi
 
 # Check for After Deploy Scripts
 bash $SCRIPTS_DIR/deploy/after-deploy.sh "$TERRAFORM_ROOT"
+
+
+

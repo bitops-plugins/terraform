@@ -14,4 +14,3 @@ else
 fi
 
 printf "${SUCCESS} Successfully destroyed Terraform deployment..."
-
