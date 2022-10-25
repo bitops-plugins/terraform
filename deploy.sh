@@ -10,12 +10,17 @@ export TERRAFORM_ROOT_OPERATIONS="$BITOPS_OPSREPO_ENVIRONMENT_DIR"
 export BITOPS_SCHEMA_ENV_FILE="$TERRAFORM_ROOT_OPERATIONS/ENV_FILE"
 export SCRIPTS_DIR="$TERRAFORM_ROOT_SCRIPTS/scripts"
 
+if [ "$SKIP_DEPLOY_TERRAFORM" == "true" ]; then
+  echo "SKIP_DEPLOY_TERRAFORM is set.  Skipping."
+  exit 0
+fi
+
 if [ ! -d "$TERRAFORM_ROOT_OPERATIONS" ]; then
   echo "No terraform directory.  Skipping."
   exit 0
-else
-  printf "Deploying terraform..."
 fi
+
+printf "Deploying terraform..."
 
 # Check for Before Deploy Scripts
 # bash $SCRIPTS_DIR/deploy/before-deploy.sh "$TERRAFORM_ROOT"
