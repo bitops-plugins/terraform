@@ -12,4 +12,3 @@ if [ "${TERRAFORM_PLAN_ALTERNATE_COMMAND}" == "true" ]; then
 else
   terraform plan $TF_ARGS
 fi
-
