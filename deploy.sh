@@ -60,7 +60,7 @@ terraform init -input=false || /usr/local/bin/terraform-$TERRAFORM_VERSION init 
 
 if [ -n "$BITOPS_TERRAFORM_WORKSPACE" ]; then
   echo "Running Terraform Workspace"
-  bash $SCRIPTS_DIR/terraform_workspace.sh $TERRAFORM_WORKSPACE
+  bash $SCRIPTS_DIR/terraform_workspace.sh $BITOPS_TERRAFORM_WORKSPACE
 fi
 
 if [ "${BITOPS_TERRAFORM_COMMAND}" == "plan" ]; then
