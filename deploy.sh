@@ -11,7 +11,7 @@ export BITOPS_SCHEMA_ENV_FILE="$TERRAFORM_ROOT_OPERATIONS/ENV_FILE"
 export SCRIPTS_DIR="$TERRAFORM_ROOT_SCRIPTS/scripts"
 
 if [ "$SKIP_DEPLOY_TERRAFORM" == "true" ] || [ "$TERRAFORM_SKIP_DEPLOY" == "true" ]; then
-  echo "SKIP_DEPLOY_TERRAFORM is set.  Skipping."
+  echo "TERRAFORM_SKIP_DEPLOY is set.  Skipping."
   exit 0
 fi
 
