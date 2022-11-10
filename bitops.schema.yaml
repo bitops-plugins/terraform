@@ -16,14 +16,14 @@ terraform:
             type: list
             parameter: backend-config
             dash_type: "-"
-      options:
-        type: object
-        properties:
           stack-action:
             type: string
             export_env: TERRAFORM_COMMAND
             required: True
             default: plan
+      options:
+        type: object
+        properties:
           skip-deploy:
             type: boolean
             parameter: skip-deploy
