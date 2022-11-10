@@ -90,7 +90,7 @@ Run BitOps with the environmental variable `TERRAFORM_APPLY` set to `true` or se
 * **BitOps Property:** `skip-deploy`
 * **Environment Variable:** `TERRAFORM_SKIP_DEPLOY`
 * **default:** `none`
-* **Required:** `false`
+* **Required:** `""`
 * **Description:** If set to true, regardless of the stack-action, deployment actions will be skipped.
 
 
