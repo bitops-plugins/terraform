@@ -86,6 +86,13 @@ Run BitOps with the environmental variable `TERRAFORM_APPLY` set to `true` or se
 * **Required:** `false`
 * **Description:** Controls what terraform command to run. e.g. `apply`, `destroy`, etc. 
 
+### skip-deploy
+* **BitOps Property:** `skip-deploy`
+* **Environment Variable:** `TERRAFORM_SKIP_DEPLOY`
+* **default:** `none`
+* **Required:** `false`
+* **Description:** If set to true, regardless of the stack-action, deployment actions will be skipped.
+
 
 -------------------
 <!-- ### version
@@ -110,9 +117,6 @@ Run BitOps with the environmental variable `TERRAFORM_APPLY` set to `true` or se
 ## Additional Environment Variable Configuration
 Although not captured in `bitops.config.yml`, the following environment variables can be set to further customize behaviour.  Set the value of the environental variable to `true` to use
 
--------------------
-### SKIP_DEPLOY_TERRAFORM
-Will skill all terraform executions. This superseeds all other configuration
 
 -------------------
 ### TERRAFORM_APPLY
