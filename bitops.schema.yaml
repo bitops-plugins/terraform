@@ -22,7 +22,7 @@ terraform:
           stack-action:
             type: string
             export_env: TERRAFORM_COMMAND
-            required: True
+            required: true
             default: plan
           skip-deploy:
             type: boolean
