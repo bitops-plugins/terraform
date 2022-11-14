@@ -7,7 +7,7 @@ BITOPS_CONFIG="$TERRAFORM_BITOPS_CONFIG"
 TF_ARGS=$1
 
 TF_LOG=""
-if [ "${DEBUG}" == 'True' ]; then
+if [ "${DEBUG}" == 'true' ]; then
     echo "Setting Terraform logging to debug mode..."
     TF_LOG="DEBUG"
 fi
