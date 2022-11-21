@@ -30,8 +30,8 @@ terraform:
         backend-config:
             - KEY1=foo
             - KEY2=bar
-    options:
         stack-action: "plan"
+    options:
         workspace: test
 ```
 
@@ -44,6 +44,9 @@ Run BitOps with the environmental variable `TERRAFORM_APPLY` set to `true` or se
 ### Terraform BitOps Schema
 
 [bitops.schema.yaml](https://github.com/bitops-plugins/terraform/blob/main/bitops.schema.yaml)
+
+-------------------
+## CLI Configurations
 
 -------------------
 ### var-file
@@ -73,19 +76,17 @@ Run BitOps with the environmental variable `TERRAFORM_APPLY` set to `true` or se
 * **Description:**
 
 -------------------
-
-
-## Options Configuration
-
--------------------
-
 ### stack-action
 * **BitOps Property:** `stack-action`
 * **Environment Variable:** `BITOPS_TERRAFORM_COMMAND`
 * **default:** `"plan"`
 * **Required:** `false`
 * **Description:** Controls what terraform command to run. e.g. `apply`, `destroy`, etc. 
+-------------------
 
+
+## Options Configuration
+-------------------
 ### skip-deploy
 * **BitOps Property:** `skip-deploy`
 * **Environment Variable:** `TERRAFORM_SKIP_DEPLOY`
