@@ -26,7 +26,7 @@ terraform: {}
 terraform:
     cli:
         var-file: my-vars.tfvars
-        target: terraform.module.resource
+        source-target: resource_identifier.resource.name
         backend-config:
             - KEY1=foo
             - KEY2=bar
@@ -59,12 +59,12 @@ Run BitOps with the environmental variable `TERRAFORM_APPLY` set to `true` or se
 
 -------------------
 ### target
-* **BitOps Property:** `target`
-* **CLI Argument:** `--target`
-* **Environment Variable:** `BITOPS_TF_TARGET`
+* **BitOps Property:** `source-target`
+* **CLI Argument:** `-target`
+* **Environment Variable:** `BITOPS_TF_SOURCE_TARGET`
 * **default:** `""`
 * **Required:** `false`
-* **Description:**
+* **Description:** `The source target is ran before tf plan/apply/destroy commands are executed. Use this attribute to create resources that further resources depend on
 
 -------------------
 ### backend-config

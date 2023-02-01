@@ -63,14 +63,22 @@ if [ -n "$BITOPS_TERRAFORM_WORKSPACE" ]; then
   bash $SCRIPTS_DIR/terraform_workspace.sh $BITOPS_TERRAFORM_WORKSPACE
 fi
 
+# Source Target
+if [[ -n $BITOPS_TF_SOURCE_TARGET ]];then
+  SOURCE_TARGET="-target $BITOPS_TF_SOURCE_TARGET"
+  echo "Running Terraform Plan, Targetting: [$BITOPS_TF_SOURCE_TARGET]"
+  bash $SCRIPTS_DIR/terraform_plan.sh "$BITOPS_CONFIG_COMMAND" $SOURCE_TARGET
+  
+  echo "Running Terraform Apply, Targetting: [$BITOPS_TF_SOURCE_TARGET]"
+  bash $SCRIPTS_DIR/terraform_apply.sh "$BITOPS_CONFIG_COMMAND" $SOURCE_TARGET
+fi
+
 if [ "${BITOPS_TERRAFORM_COMMAND}" == "plan" ]; then
   echo "Running Terraform Plan"
   bash $SCRIPTS_DIR/terraform_plan.sh "$BITOPS_CONFIG_COMMAND"
 fi
 
 if [ "${BITOPS_TERRAFORM_COMMAND}" == "apply" ] || [ "${TERRAFORM_APPLY}" == "true" ]; then
-  # always plan first
-  echo "DEBUGGING: [$SCRIPTS_DIR]"
   echo "Running Terraform Plan"
   bash $SCRIPTS_DIR/terraform_plan.sh "$BITOPS_CONFIG_COMMAND"
 
@@ -86,8 +94,3 @@ if [ "${BITOPS_TERRAFORM_COMMAND}" == "destroy" ] || [ "${TERRAFORM_DESTROY}" ==
   echo "Running Terraform Destroy"
   bash $SCRIPTS_DIR/terraform_destroy.sh "$BITOPS_CONFIG_COMMAND"
 fi
-
-# Check for After Deploy Scripts
-# bash $PLUGIN_DIR/deploy/after-deploy.sh "$TERRAFORM_ROOT"
-
-#echo "PLUGIN_DIR=${PLUGIN_DIR}"

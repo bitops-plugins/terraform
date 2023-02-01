@@ -8,10 +8,10 @@ terraform:
             type: string
             parameter: var-file
             export_env: TF_VAR_FILE
-          target:
+          source-target:
             type: string
-            parameter: target
-            export_env: TF_TARGET
+            parameter: source-target
+            export_env: TF_SOURCE_TARGET
           backend-config:
             type: list
             parameter: backend-config
