@@ -67,10 +67,10 @@ fi
 if [[ -n $BITOPS_TF_SOURCE_TARGET ]];then
   SOURCE_TARGET="-target $BITOPS_TF_SOURCE_TARGET"
   echo "Running Terraform Plan, Targetting: [$BITOPS_TF_SOURCE_TARGET]"
-  bash $SCRIPTS_DIR/terraform_plan.sh "$BITOPS_CONFIG_COMMAND" $SOURCE_TARGET
+  bash $SCRIPTS_DIR/terraform_plan.sh "$BITOPS_CONFIG_COMMAND" "$SOURCE_TARGET"
   
   echo "Running Terraform Apply, Targetting: [$BITOPS_TF_SOURCE_TARGET]"
-  bash $SCRIPTS_DIR/terraform_apply.sh "$BITOPS_CONFIG_COMMAND" $SOURCE_TARGET
+  bash $SCRIPTS_DIR/terraform_apply.sh "$BITOPS_CONFIG_COMMAND" "$SOURCE_TARGET"
 fi
 
 if [ "${BITOPS_TERRAFORM_COMMAND}" == "plan" ]; then
