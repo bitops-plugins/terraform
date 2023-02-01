@@ -5,7 +5,7 @@ echo "Running terraform apply..."
 
 BITOPS_CONFIG="$TERRAFORM_BITOPS_CONFIG" 
 TF_ARGS=$1
-SOURCE_TARGET=$2
+TF_TARGET=$2
 
 TF_LOG=""
 if [ "${DEBUG}" == 'true' ]; then
@@ -19,7 +19,7 @@ if [ "${TERRAFORM_APPLY_ALTERNATE_COMMAND}" == "true" ]; then
   TERRAFORM_COMMAND=$(shyaml get-value terraform_options.terraform_apply.command < "$BITOPS_CONFIG" || true)
   bash $SCRIPTS_DIR/util/run-text-as-script.sh "$TERRAFORM_ROOT" "$TERRAFORM_COMMAND"
 else
-  terraform apply $SOURCE_TARGET -auto-approve $TF_ARGS
+  terraform apply $TF_TARGET -auto-approve $TF_ARGS
 fi
 
 printf "${SUCCESS} Terraform deployment was successful...${NC}"

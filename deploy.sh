@@ -64,13 +64,20 @@ if [ -n "$BITOPS_TERRAFORM_WORKSPACE" ]; then
 fi
 
 # Source Target
-if [[ -n $BITOPS_TF_SOURCE_TARGET ]];then
-  SOURCE_TARGET="-target $BITOPS_TF_SOURCE_TARGET"
-  echo "Running Terraform Plan, Targetting: [$BITOPS_TF_SOURCE_TARGET]"
-  bash $SCRIPTS_DIR/terraform_plan.sh "$BITOPS_CONFIG_COMMAND" "$SOURCE_TARGET"
-  
-  echo "Running Terraform Apply, Targetting: [$BITOPS_TF_SOURCE_TARGET]"
-  bash $SCRIPTS_DIR/terraform_apply.sh "$BITOPS_CONFIG_COMMAND" "$SOURCE_TARGET"
+if [ -n "$BITOPS_TF_TARGETS" ] && !([ "${BITOPS_TERRAFORM_COMMAND}" == "destroy" ] || [ "${TERRAFORM_DESTROY}" == "true" ]); then
+  targets=( $BITOPS_TF_TARGETS )
+  for target in "${targets[@]}"
+  do
+    TF_TARGET="-target $target"
+    
+    echo "Running Terraform Plan, Targetting: [$target]"
+    bash $SCRIPTS_DIR/terraform_plan.sh "$BITOPS_CONFIG_COMMAND" "$TF_TARGET"
+    
+    if [ "${BITOPS_TERRAFORM_COMMAND}" != "plan" ]; then
+      echo "Runnng Terraform Apply, Targetting: [$target]"
+      bash $SCRIPTS_DIR/terraform_apply.sh "$BITOPS_CONFIG_COMMAND" "$TF_TARGET"
+    fi
+  done
 fi
 
 if [ "${BITOPS_TERRAFORM_COMMAND}" == "plan" ]; then
