@@ -58,13 +58,13 @@ Run BitOps with the environmental variable `TERRAFORM_APPLY` set to `true` or se
 * **Description:** Terraform Varaible file
 
 -------------------
-### target
+### source-target
 * **BitOps Property:** `source-target`
 * **CLI Argument:** `-target`
 * **Environment Variable:** `BITOPS_TF_SOURCE_TARGET`
 * **default:** `""`
 * **Required:** `false`
-* **Description:** `The source target is ran before tf plan/apply/destroy commands are executed. Use this attribute to create resources that further resources depend on
+* **Description:** `The source target is ran before tf plan/apply/destroy commands are executed. Use this attribute to create resources that further resources depend on`
 
 -------------------
 ### backend-config
