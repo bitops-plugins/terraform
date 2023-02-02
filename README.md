@@ -26,7 +26,9 @@ terraform: {}
 terraform:
     cli:
         var-file: my-vars.tfvars
-        targets: resource_identifier.resource_name
+        targets: 
+            - resource_identifier.foo
+            - resource_identifier.bar
         backend-config:
             - KEY1=foo
             - KEY2=bar
@@ -65,8 +67,8 @@ Run BitOps with the environmental variable `TERRAFORM_APPLY` set to `true` or se
 
     ```
     targets:
-        - resource.name1
-        - resource.name2
+        - resource.id1
+        - resource.id2
     ```
 * **Environment Variable:** `BITOPS_TF_TARGETS`
 * **default:** `""`
