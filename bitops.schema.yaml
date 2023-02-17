@@ -10,7 +10,7 @@ terraform:
             export_env: TF_VAR_FILE
           targets:
             type: list
-            parameter: targets
+            parameter: target
             export_env: TF_TARGETS
           backend-config:
             type: list
