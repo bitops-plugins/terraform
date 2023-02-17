@@ -26,7 +26,9 @@ terraform: {}
 terraform:
     cli:
         var-file: my-vars.tfvars
-        target: terraform.module.resource
+        targets: 
+            - resource_identifier.foo
+            - resource_identifier.bar
         backend-config:
             - KEY1=foo
             - KEY2=bar
@@ -59,12 +61,19 @@ Run BitOps with the environmental variable `TERRAFORM_APPLY` set to `true` or se
 
 -------------------
 ### target
-* **BitOps Property:** `target`
-* **CLI Argument:** `--target`
-* **Environment Variable:** `BITOPS_TF_TARGET`
+* **BitOps Property:** `targets`
+* **CLI Argument:** `-target <target1> -target <target2> ...`
+* **Usage:**
+
+    ```
+    targets:
+        - resource.id1
+        - resource.id2
+    ```
+* **Environment Variable:** `BITOPS_TF_TARGETS`
 * **default:** `""`
 * **Required:** `false`
-* **Description:**
+* **Description:** `A yaml list of terraform resources that will be created prior to the full stack creation.`
 
 -------------------
 ### backend-config
