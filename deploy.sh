@@ -1,4 +1,6 @@
 #!/bin/bash
+# shellcheck disable=SC2086,1090,2206
+
 # No set -e here because we want to get a non-zero exit code from terraform_plan.sh
 set -e
 
@@ -55,12 +57,7 @@ echo "Using terraform version $TERRAFORM_VERSION"
 
 # always init first
 echo "Running terraform init"
-
-# set $TERRAFORM_CUSTOM_INIT to add params to the default init command
-if [ -n "$TERRAFORM_CUSTOM_INIT" ]; then echo "Running custom terraform init"; fi
-
-terraform init -input=false "$TERRAFORM_CUSTOM_INIT" \
-  || /usr/local/bin/terraform-$TERRAFORM_VERSION init -input=false "$TERRAFORM_CUSTOM_INIT"
+bash $SCRIPTS_DIR/terraform_init.sh # uses $BITOPS_TERRAFORM_CUSTOM_INIT
 
 if [ -n "$BITOPS_TERRAFORM_WORKSPACE" ]; then
   echo "Running Terraform Workspace"
@@ -68,7 +65,9 @@ if [ -n "$BITOPS_TERRAFORM_WORKSPACE" ]; then
 fi
 
 # Source Target
-if [ -n "$BITOPS_TF_TARGETS" ] && !([ "${BITOPS_TERRAFORM_COMMAND}" == "destroy" ] || [ "${TERRAFORM_DESTROY}" == "true" ]); then
+## the commented line breaks shellcheck 1035 and 2235 and is less efficient than the new line.
+# if [ -n "$BITOPS_TF_TARGETS" ] && !([ "${BITOPS_TERRAFORM_COMMAND}" == "destroy" ] || [ "${TERRAFORM_DESTROY}" == "true" ]); then
+if [ -n "$BITOPS_TF_TARGETS" ] && ! { [ "${BITOPS_TERRAFORM_COMMAND}" == "destroy" ] || [ "${TERRAFORM_DESTROY}" == "true" ]; }; then
   targets=( $BITOPS_TF_TARGETS )
   for target in "${targets[@]}"
   do
