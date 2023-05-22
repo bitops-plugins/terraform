@@ -55,8 +55,12 @@ echo "Using terraform version $TERRAFORM_VERSION"
 
 # always init first
 echo "Running terraform init"
-terraform init -input=false || /usr/local/bin/terraform-$TERRAFORM_VERSION init -input=false
 
+# set $TERRAFORM_CUSTOM_INIT to add params to the default init command
+if [ -n "$TERRAFORM_CUSTOM_INIT" ]; then echo "Running custom terraform init"; fi
+
+terraform init -input=false "$TERRAFORM_CUSTOM_INIT" \
+  || /usr/local/bin/terraform-$TERRAFORM_VERSION init -input=false "$TERRAFORM_CUSTOM_INIT"
 
 if [ -n "$BITOPS_TERRAFORM_WORKSPACE" ]; then
   echo "Running Terraform Workspace"
