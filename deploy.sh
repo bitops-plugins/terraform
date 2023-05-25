@@ -6,13 +6,16 @@ set -e
 
 echo "Running Terraform Plugin deployment script..."
 
+echo "Updating environment variables..."
+readEnvVars
+
 # terraform vars
 export TERRAFORM_ROOT_SCRIPTS="$BITOPS_INSTALLED_PLUGIN_DIR"
 export TERRAFORM_ROOT_OPERATIONS="$BITOPS_OPSREPO_ENVIRONMENT_DIR"
 export BITOPS_SCHEMA_ENV_FILE="$TERRAFORM_ROOT_OPERATIONS/ENV_FILE"
 export SCRIPTS_DIR="$TERRAFORM_ROOT_SCRIPTS/scripts"
 
-if [ "$TERRAFORM_SKIP_DEPLOY" == "true" ]; then
+if [ "$TERRAFORM_SKIP_DEPLOY" == "true" ] ; then
   echo "TERRAFORM_SKIP_DEPLOY is set.  Skipping."
   exit 0
 fi

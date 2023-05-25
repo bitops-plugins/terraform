@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck disable=SC2206
+# shellcheck disable=SC2206,2086
 
 # set a default init command to splat later
 terraform_cmd=(init -input=false)
